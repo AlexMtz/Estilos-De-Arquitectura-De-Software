@@ -1,0 +1,55 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+import pika
+import sys
+from SignosVitales import SignosVitales
+
+
+class PresionManager:
+    presion_sistolica = 0
+    status = ""
+    values_parameters = []
+
+    def setUpManager(self, sistolica):
+        self.presion_sistolica = sistolica
+
+    def filter_event(self, sis):
+        if sis > self.presion_sistolica:
+            return True
+        else:
+            return False
+
+    def start_consuming(self):
+        self.values_parameters = sys.argv[1:]
+        self.create_filter()
+        connection = pika.BlockingConnection(pika.ConnectionParameters(
+            host='localhost'))
+        channel = connection.channel()
+        channel.exchange_declare(exchange='adultos_mayores',
+                                 type='topic')
+        result = channel.queue_declare(exclusive=True)
+        queue_name = result.method.queue
+        binding_keys = ['presion_arterial']
+        for binding_key in binding_keys:
+            channel.queue_bind(exchange='adultos_mayores',
+                               queue=queue_name, routing_key=binding_key)
+
+        print(' [*] Start monitoring. Press CTRL+C for exit monitoring')
+        channel.basic_consume(self.callback,
+                              queue=queue_name,
+                              no_ack=True)
+        channel.start_consuming()
+
+    def callback(self, ch, method, properties, body):
+        values = body.split(':')
+        if self.filter_event(int(values[4])):
+            self.status = "Warning: " + \
+                str(values[3]) + " tiene hipertensión: " + str(values[4])
+            monitor = SignosVitales()
+            monitor.print_notification(self.status)
+
+    def create_filter(self):
+        self.setUpManager(int[self.values_parameters[0]])
+
+test = PresionManager()
+test.start_consuming()
