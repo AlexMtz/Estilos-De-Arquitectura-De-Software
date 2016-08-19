@@ -17,4 +17,4 @@ Para ejecutar el simulador es necesario seguir los sigiuentes pasos:
 5. Ejecutar el simulador: `python Simulador.py`  
 
 Si el simulador se ejecuto de manera correcta encontraremos lo siguiente:  
-![Simulador.py](https://drive.google.com/open?id=0B1FMJsKfgRaPVTZPOWVDWks2eGc)
+[Simulador.py](https://drive.google.com/open?id=0B1FMJsKfgRaPVTZPOWVDWks2eGc)
