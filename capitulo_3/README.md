@@ -5,7 +5,7 @@
 ###Prerequisitos
 
 Antes de ejecutar el código aseguradte de haber realizado las acciones indicadas en la Wiki -> HealthMonitoringSimulator  
-[Prerequisitos.py](https://github.com/AlexMtz/Estilos-De-Arquitectura-De-Software/wiki/HealthMonitoringSimulator)
+[Prerequisitos](https://github.com/AlexMtz/Estilos-De-Arquitectura-De-Software/wiki/HealthMonitoringSimulator)
 
 ###Ejecutar Simulador
 
