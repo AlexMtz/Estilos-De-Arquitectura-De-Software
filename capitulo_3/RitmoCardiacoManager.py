@@ -118,7 +118,7 @@ class RitmoCardiacoManager:
 
     def callback(self, ch, method, properties, body):
         values = body.split(':')
-        event = int(values[4])
+        event = int(values[3])
         if event > int(self.pulso_maximo):
             monitor = SignosVitales()
             monitor.print_notification('+----------+-----------------------+')

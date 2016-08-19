@@ -118,11 +118,12 @@ class TemperaturaManager:
 
     def callback(self, ch, method, properties, body):
         values = body.split(':')
-        if self.filter_event(int(values[4])):
+        event = int(values[3])
+        if event > int(self.temperatura_maxima):
             monitor = SignosVitales()
-            monitor.print_notification('+----------+-----------------------+')
-            monitor.print_notification('|   ' + str(values[3]) + '   |     TIENE CALENTURA   |')
-            monitor.print_notification('+----------+-----------------------+')
+            monitor.print_notification('+----------+-----------------------+----------+')
+            monitor.print_notification('|   ' + str(values[3]) + '   |     TIENE CALENTURA   |   ' + str(values[2]) + '   |')
+            monitor.print_notification('+----------+-----------------------+----------+')
             monitor.print_notification('')
             monitor.print_notification('')
 
