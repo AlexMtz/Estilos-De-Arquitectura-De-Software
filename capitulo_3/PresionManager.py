@@ -1,9 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import pika
-import sys
-from SignosVitales import SignosVitales
-
 #--------------------------------------------------------------------------------------------------
 # Archivo: PresionManager.py
 # Capitulo: 3 Estilo Publica-Subscribe
@@ -13,15 +9,15 @@ from SignosVitales import SignosVitales
 #
 #   Ésta clase define el rol de un subscriptor que consume los mensajes de una cola
 #   específica.
-#   Las características de ésta clase son la siguientes:
+#   Las características de ésta clase son las siguientes:
 #
 #                                        PresionManager.py
 #           +-----------------------+-------------------------+------------------------+
 #           |  Nombre del elemento  |     Responsabilidad     |      Propiedades       |
 #           +-----------------------+-------------------------+------------------------+
 #           |                       |  - Recibir mensajes     |  - Se subscribe a la   |
-#           |      Subscriptor      |  - Notificar al         |    cola de 'presion    |
-#           |                       |    monitor.             |    arterial'.          |
+#           |      Subscriptor      |  - Notificar al         |    cola de 'direct     |
+#           |                       |    monitor.             |    preasure'.          |
 #           |                       |  - Filtrar valores      |  - Define un rango en  |
 #           |                       |    extremos de presion  |    el que la presión   |
 #           |                       |    arterial.            |    tiene valores vá-   |
@@ -64,7 +60,7 @@ from SignosVitales import SignosVitales
 #           |                        | method: propio de Rabbit |    de negocio.        |
 #           |       callback()       |   properties: propio de  |  - Se manda llamar    |
 #           |                        |         RabbitMQ         |    cuando un evento   |
-#           |                        |       body: String       |    ocurre.            |
+#           |                        |       String: body       |    ocurre.            |
 #           +------------------------+--------------------------+-----------------------+
 #
 #           Nota: "propio de Rabbit" implica que se utilizan de manera interna para realizar
@@ -75,6 +71,11 @@ from SignosVitales import SignosVitales
 #            
 #
 #--------------------------------------------------------------------------------------------------
+
+
+import pika
+import sys
+from SignosVitales import SignosVitales
 
 class PresionManager:
     presion_sistolica = 0
@@ -116,11 +117,14 @@ class PresionManager:
 
     def callback(self, ch, method, properties, body):
         values = body.split(':')
-        event = values[4]
-        if event > self.presion_sistolica:
-            status = "Advertencia: " + str(values[3]) + " tiene hipertensión: " + str(values[4])
+        event = int(values[4])
+        if event > int(self.presion_sistolica):
             monitor = SignosVitales()
-            monitor.print_notification(status)
+            monitor.print_notification('+----------+-----------------------+')
+            monitor.print_notification('|   ' + str(values[3]) + '   |   TIENE HIPERTENSIÓN  |')
+            monitor.print_notification('+----------+-----------------------+')
+            monitor.print_notification('')
+            monitor.print_notification('')
 
 test = PresionManager()
 test.start_consuming()
