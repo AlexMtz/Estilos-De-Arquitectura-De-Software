@@ -17,7 +17,7 @@
 #           |  Nombre del elemento  |     Responsabilidad     |      Propiedades       |
 #           +-----------------------+-------------------------+------------------------+
 #           |                       |  - Enviar mensajes      |  - Se conecta a la cola|
-#           |      Publicador       |                         |    'direct preasure'.  |
+#           |      Publicador       |                         |    'direct temperature'|
 #           |                       |                         |  - Envia datos de tem- |
 #           |                       |                         |    peratura a la cola. |
 #           +-----------------------+-------------------------+------------------------+
