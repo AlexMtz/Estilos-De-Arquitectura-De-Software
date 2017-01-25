@@ -69,7 +69,8 @@ def index():
             '"', '')), "language": LANGUAGE,  "query": TOPIC, "id": tweet.id}
         tweets.append(aux)
 
-    return json.dumps(tweets, indent=2)
+    result = { "data" : tweets }
+    return str(result)
 
 if __name__ == '__main__':
     app.run(port=5000, debug=True)
