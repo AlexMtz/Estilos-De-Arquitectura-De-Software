@@ -40,7 +40,7 @@ from flask import request
 import urllib, json
 app = Flask (__name__)
 
-@app.route("/information")
+@app.route("/api/v1/information")
 def get_information():
 	title = request.args.get("t")
 	# Conectar con el microservicio de OMDB

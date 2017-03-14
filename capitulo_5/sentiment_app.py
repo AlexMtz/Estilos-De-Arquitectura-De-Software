@@ -23,29 +23,14 @@ def sentiment_analysis():
 	neutral_reviews = 0
 	#JSON de la respuesta
 	json_result = {}
-	#Conectar con el microservicio del dataset
-	url_review = urllib.urlopen("http://localhost:8081/db/reviews")
-	#Leer los reviews recibidos
-	json_review = url_review.read()
-	#Convertir en json los reviews obtenidos
-	review = json.loads(json_review)
-	#Enviar a analizar los reviews del dataset al servicio de analisis de sentimiento y recibimos el resultado
-	res = requests.post('http://localhost:8082/text/analysis', json=review)
-	#Lo convertimos en un json
-	result = json.loads(res.text) # Dataset analizado
-	#Accedemos a los atributos del json
-	total_reviews += int(result['total reviews'])
-	positive_reviews += int(result['positive'])
-	negative_reviews += int(result['negative'])
-	neutral_reviews += int(result['neutral'])
 	#Conectar con el microservicio de Twitter
-	url_tweet = urllib.urlopen('http://localhost:8083/tweets?h='+hashtag)
+	url_tweet = urllib.urlopen('http://localhost:8083/api/v1/tweets?h='+hashtag)
 	#Leer los tweets recibidos
 	json_tweets = url_tweet.read()
 	#Convertir en json los tweets obtenidos
 	tweets = json.loads(json_tweets)
 	#Enviar a analizar los tweets del json de twitter al servicio de analisis de sentimientos de twitter y recibimos el resultado
-	res_tweets = requests.post('http://localhost:8082/text/analysis', json=tweets)
+	res_tweets = requests.post('http://localhost:8082/api/v1/text-analysis', json=tweets)
 	#Lo convertimos en un json
 	result_tweets = json.loads(res_tweets.text)
 	# Accedemos a los valores del json
@@ -54,12 +39,9 @@ def sentiment_analysis():
 	negative_reviews += int(result_tweets['negative'])
 	neutral_reviews += int(result_tweets['neutral'])
 	# Conectar con el microservicio de OMDB
-	url_omdb = urllib.urlopen("http://localhost:8084/information?t=" + title)
+	url_omdb = urllib.urlopen("http://localhost:8084/api/v1/information?t=" + title)
 	# Leer la respuesta de OMDB
 	json_omdb = url_omdb.read()
-
-	print json_omdb
-
 	# Convertir en json la respuesta
 	omdb = json.loads(json_omdb)
 	json_result['positive'] = positive_reviews

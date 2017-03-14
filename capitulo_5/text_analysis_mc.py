@@ -52,7 +52,7 @@ import json
 app = Flask(__name__)
 
 
-@app.route("/text/analysis", methods=['POST'])
+@app.route("/api/v1/text-analysis", methods=['POST'])
 def text_analysis():
     positive = 0
     negative = 0

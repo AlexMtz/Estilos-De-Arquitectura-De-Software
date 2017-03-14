@@ -56,9 +56,9 @@ h3 {
 /* Custom Button Styles */
 
 .btn-dark {
-    border-radius: 0;
+    border-radius: 5px;
     color: #fff;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(255,0,0,1);
 }
 
 .btn-dark:hover,

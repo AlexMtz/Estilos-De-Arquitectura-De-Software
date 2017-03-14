@@ -57,7 +57,7 @@ import os
 from flask import Flask
 app = Flask(__name__)
 
-@app.route("/tweets")
+@app.route("/api/v1/tweets")
 def get_tweets():
     CKEY = "qmAcwSrXXuNBc3rYuoKmsCYNe"
     CSECRET = "cXL1Ln9YVPC4RnCfE0rFe6Q8BLPcwuu7F4aAGS2m2L35ecT7xn"
@@ -65,7 +65,7 @@ def get_tweets():
     ATOKENSECRET = "fYHUsibHPJj1v1bGOyWBX0FQtrpvzTh2d3XbtlUtVSmtD"
     TOPIC = request.args.get("h")
     LANGUAGE = 'es'
-    LIMIT = 10
+    LIMIT = 1000
     auth = OAuthHandler(CKEY, CSECRET)
     auth.set_access_token(ATOKEN, ATOKENSECRET)
     api = tweepy.API(auth)
