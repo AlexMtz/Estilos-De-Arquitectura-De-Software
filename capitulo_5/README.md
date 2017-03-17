@@ -1,3 +1,33 @@
+# Capitulo 3
+
+## "Sentiment Analysis System"
+
+### Prerequisitos
+
+Antes de ejecutar el código aseguradte de haber realizado las acciones indicadas en la Wiki -> SentimentAnalysisSystem  
+[Prerequisitos](https://github.com/AlexMtz/Estilos-De-Arquitectura-De-Software/wiki/SentimentAnalysisSystem)
+
+### Ejecutar cada servicio
+
+Para ejecutar el sistema es necesario seguir los sigiuentes pasos:  
+1. Abrir terminal en Ubuntu.  
+2. Clonar el repositorio:   `git clone https://github.com/AlexMtz/Estilos-De-Arquitectura-De-Software.git`  
+3. Ingresar a la carpeta que descargamos:   `cd Estilos-De-Arquitectura-De-Software/`  
+4. Acceder al capítulo 5:  `cd capitulo_5/`  
+5. Ejecutar cliente: `python sentiment_app.py`
+6. Repetir los pasos '1','3','4'
+7. Ejecutar servicio de Twitter: `python twitter_mc.py`
+8. Repetir los pasos '1','3','4'
+9. Ejecutar servicio de análisis de texto: `python text_analysis_mc.py`
+10. Repetir los pasos '1','3','4'
+5. Ejecutar servicio de información: `python information_mc.py
+`  
+
+Si el simulador se ejecuto de manera correcta encontraremos lo siguiente:  
+[Chapter 5](https://drive.google.com/open?id=0B1FMJsKfgRaPRnZCMDhUYkhTQms)
+
+## Definición del API
+
 FORMAT: 1A
 
 HOST: http://localhost:8080/api/v1
