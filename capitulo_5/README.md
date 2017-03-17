@@ -1,4 +1,5 @@
 FORMAT: 1A
+
 HOST: http://localhost:8083/api/v1
 
 # Sentiment API
@@ -6,9 +7,10 @@ HOST: http://localhost:8083/api/v1
 Sentiment API es un API que permite obetener y analizar reviews 
 publicados en Twitter acerca de una película o serie de Netflix para
 conocer el sentimiento expresado. Además de obtener la información
-acerca de esa película o serie.
+acerca de esa película o serie. A continuación se detalla su 
+definición.
 
-##Servicio de Twitter [/tweets{?h}]
+## Servicio de Twitter [/tweets{?h}]
 
 Obtiene los reviews más recientes publicados en Twitter acerca de una
 serie o pelicula de Netflix favorita.
