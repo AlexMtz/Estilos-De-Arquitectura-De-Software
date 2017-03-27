@@ -63,9 +63,9 @@ def get_tweets():
     CSECRET = "cXL1Ln9YVPC4RnCfE0rFe6Q8BLPcwuu7F4aAGS2m2L35ecT7xn"
     ATOKEN = "715041734372298752-tZTVZ9aXHUfr4DHDAUTtGecHRIMPG2f"
     ATOKENSECRET = "fYHUsibHPJj1v1bGOyWBX0FQtrpvzTh2d3XbtlUtVSmtD"
-    TOPIC = request.args.get("h")
+    TOPIC = request.args.get("u")
     LANGUAGE = 'es'
-    LIMIT = 1000
+    LIMIT = 10
     auth = OAuthHandler(CKEY, CSECRET)
     auth.set_access_token(ATOKEN, ATOKENSECRET)
     api = tweepy.API(auth)

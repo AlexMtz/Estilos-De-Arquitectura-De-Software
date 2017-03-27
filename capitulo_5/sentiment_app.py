@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
 #!/usr/bin/env python
 import os
-from dbhelper import DBHelper
-from flask import Flask
-from flask import render_template
-from flask import request
+from flask import Flask, render_template, request
 import urllib, json
 import requests
 app = Flask (__name__)
@@ -16,7 +13,7 @@ def index():
 @app.route("/analysis/sentiment", methods=['GET'])
 def sentiment_analysis():
 	title = request.args.get("t")
-	hashtag = request.args.get("h")
+	twitter_user = request.args.get("u")
 	total_reviews = 0
 	positive_reviews = 0
 	negative_reviews = 0
@@ -24,7 +21,7 @@ def sentiment_analysis():
 	#JSON de la respuesta
 	json_result = {}
 	#Conectar con el microservicio de Twitter
-	url_tweet = urllib.urlopen('http://localhost:8083/api/v1/tweets?h='+hashtag)
+	url_tweet = urllib.urlopen('http://localhost:8083/api/v1/tweets?u='+twitter_user)
 	#Leer los tweets recibidos
 	json_tweets = url_tweet.read()
 	#Convertir en json los tweets obtenidos
