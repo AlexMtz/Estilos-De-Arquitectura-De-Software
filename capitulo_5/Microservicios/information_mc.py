@@ -42,16 +42,22 @@ app = Flask (__name__)
 
 @app.route("/api/v1/information")
 def get_information():
+	# Método que obtiene la información de OMDB acerca de un título en particular
+	# Se obtiene el parámetro 't' que contiene el título de la película o serie que se va a consultar
 	title = request.args.get("t")
-	# Conectar con el microservicio de OMDB
+	# Se ocnecta con el micro servicio de OMDB a través del API que OMDB ofrece
 	url_omdb = urllib.urlopen("http://www.omdbapi.com/?t="+title+"&plot=full&r=json")
-	# Leer la respuesta de OMDB
+	# Se lee la respuesta de OMDB
 	json_omdb = url_omdb.read()
-	# Convertir en json la respuesta
+	# Se convierte en un JSON la respuesta recibida
 	omdb = json.loads(json_omdb)
+	# Se regresa como respuesta el JSON que se recibió del API de OMDB
 	return json.dumps(omdb)
 
 if __name__ == '__main__':
+	# Se define el puerto del sistema operativo que utilizará el micro servicio
 	port = int(os.environ.get('PORT', 8084))
+	# Se habilita la opción de 'debug' para visualizar los errores
 	app.debug = True
+	# Se ejecuta el micro servicio definiendo el host '0.0.0.0' para que se pueda acceder desde cualquier IP
 	app.run(host='0.0.0.0', port=port)
