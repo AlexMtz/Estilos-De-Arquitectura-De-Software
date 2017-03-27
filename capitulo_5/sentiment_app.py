@@ -1,5 +1,27 @@
 # -*- coding: utf-8 -*-
 #!/usr/bin/env python
+#----------------------------------------------------------------------------------------------------------------
+# Archivo: sentiment_app.py
+# Capitulo: 5 Estilo Microservicios.
+# Autor(es): Perla Velasco & Yonathan Mtz.
+# Version: 1.0 Marzo 2017
+# Descripción:
+#
+#   Este archivo define la interfaz gráfica del usuario. Recibe dos parámetros que posteriormente son enviados
+#   a micro servicios que la interfaz consume.
+#   
+#   
+#
+#                                        sentiment_app.py
+#           +-----------------------+-------------------------+------------------------+
+#           |  Nombre del elemento  |     Responsabilidad     |      Propiedades       |
+#           +-----------------------+-------------------------+------------------------+
+#           |                       |  - Porporcionar la in-  | - Consume micro servi- |
+#           |          GUI          |    terfaz gráfica con la|   cios para proporcio- |        |
+#           |                       |    que el usuario hará  |   nar información al u-|
+#           |                       |    uso del sistema.     |   suario.              |
+#           +-----------------------+-------------------------+------------------------+
+#
 import os
 from flask import Flask, render_template, request
 import urllib, json

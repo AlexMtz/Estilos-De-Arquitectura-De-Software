@@ -7,45 +7,32 @@
 # Version: 1.0 Febrero 2017
 # Descripción:
 #
-#   Este archivo define el rol de un microservicio. Su función general es conectarse con el API
-#   de Twitter para obtener comentarios actuales acerca de la serie Stranger Things. 
-#   La estructura del JSON es la siguiente 'review #' : 'comment text'
-#   donde: 
-#       # -> corresponde al número de review
-#       commnet text -> corresponde al comentario extraido desde Twitter
+#   Este archivo define el rol de un micro servicio. Su función general es proporcionar los tuits
+#   más recientes relacionados o publicados por un usuario de Twitter. El micro servicio se conecta
+#   con el API de Twitter para obtener los tuits.
 #
 #                                           twitter_mc.py
 #           +-----------------------+-------------------------+------------------------+
 #           |  Nombre del elemento  |     Responsabilidad     |      Propiedades       |
 #           +-----------------------+-------------------------+------------------------+
-#           |                       |  - Ofrecer en un JSON   | - Se conecta con la red|
-#           |     Microservicio     |    que contenga comenta-|   social de Twitter.   |
-#           |                       |    rios publicados en la| - Genera un JSON con la|
-#           |                       |    página de Twitter.   |   siguiente estructura:|
-#           |                       |                         |   {                    |
+#           |                       |  - Ofrecer un JSON que  | - Se conecta con el API|
+#           |    Micro servicio     |    contenga los tuits   |   de Twitter.          |
+#           |                       |    más recientes rela-  | - La estructura del    |
+#           |                       |    cionados con un usua-|   JSON es la siguiente:|
+#           |                       |    rio de Twitter.      |   {                    |
 #           |                       |                         |    'review #' : 'texto'|
 #           |                       |                         |   }                    |
-#           |                       |                         | - Utiliza la ruta:     |
-#           |                       |                         |   '/tweets'            |
-#           |                       |                         |   para ofrecer el      |
-#           |                       |                         |   servicio.            |
-#           |                       |                         | - El hashtag a analizar|
-#           |                       |                         |   es el siguiente:     |
-#           |                       |                         |   @Stranger_Things.    |
 #           +-----------------------+-------------------------+------------------------+
 #
-#   Instrucciones de ejecución:
-#       - Contar con una cuenta de Twitter.
-#       - Dirigirse a https://dev.twitter.com/
-#       - Obtener un consumer key, consumer secret, access token y access token secret como la siguiente estructura:
+#   Notas:
+#    Para este micro servicio se realizó previamente lo siguiente:
+#       - Se creó una cuenta en Twitter.
+#       - Se accedió a https://dev.twitter.com/
+#       - Se obtuvó un consumer key, un consumer secret, un access token y un access token secret.
 #           -> Consumer Key = "xxXxxXxXXxXXxXxXxxXxxXXXx"
 #           -> Consumer Secret = "xXXXXxXXXXXXXxXxXXxXxXXXXXXxxxxXXXxXXXXxXXXXxxXXxx"
 #           -> Access Token = "XXXXXXXXXXXXXXXXXX-xXXXXXxXXXxxXXXXXXXxXxxXXXXXXXx"
 #           -> Access Token Secret = "xXXXxxxXXXxXxXxXXxXXXXXXxxxxxXxXxXXxxxXxXXxxX"
-#       - Ingresar las credenciales en el archivo.
-#       - Abrir la terminal
-#       - Ejecutar el comando 'python twitter_mc.py'
-#
 #
 from tweepy import OAuthHandler
 import tweepy

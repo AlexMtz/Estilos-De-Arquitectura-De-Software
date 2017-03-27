@@ -7,9 +7,9 @@
 # Version: 1.0 Febrero 2017
 # Descripción:
 #
-#   Este archivo define el rol de un microservicio. Su función general es porporcionar en un JSON la
-#   información detallada acerca de una pelicula o una serie específica extraidos del sitio web
-#   'https://www.imdb.com/'. La estructura del JSON está definida por el sitio de IMDB.
+#   Este archivo define el rol de un micro servicio. Su función general es porporcionar en un objeto JSON
+#   información detallada acerca de una pelicula o una serie en particular haciendo uso del API del sitio
+#   web 'https://www.imdb.com/'.
 #   
 #   
 #
@@ -17,21 +17,12 @@
 #           +-----------------------+-------------------------+------------------------+
 #           |  Nombre del elemento  |     Responsabilidad     |      Propiedades       |
 #           +-----------------------+-------------------------+------------------------+
-#           |                       |  - Ofrecer en un JSON   | - Se conecta con el    |
-#           |     Microservicio     |    que contenga informa-|   API de IMDB.         |
-#           |                       |    ción de peliculas o  | - Devuelve un JSON con |
-#           |                       |    series en específico.|   datos de la serie o  |
-#           |                       |                         |   pelicula en cuestión.|
-#           |                       |                         | - Utiliza la ruta:     |
-#           |                       |                         |   '/information'       |
-#           |                       |                         |   para ofrecer el      |
-#           |                       |                         |   servicio.            |
+#           |                       |  - Ofrecer un JSON que  | - Se conecta con el    |
+#           |    Micro servicio     |    contenga información |   API de IMDB.         |
+#           |                       |    detallada de pelí-   | - Devuelve un JSON con |
+#           |                       |    culas o series en    |   datos de la serie o  |
+#           |                       |    particular.          |   pelicula en cuestión.|
 #           +-----------------------+-------------------------+------------------------+
-#
-#	Instrucciones de ejecución:
-#		- Abrir la terminal
-#		- Ejecutar el comando 'python information_mc.py'
-#
 #
 import os
 from flask import Flask

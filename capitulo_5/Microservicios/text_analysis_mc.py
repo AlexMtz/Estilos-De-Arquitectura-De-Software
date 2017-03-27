@@ -9,12 +9,10 @@
 # Version: 1.0 Febrero 2017
 # Descripción:
 #
-#   Este archivo define el rol de un microservicio. Su función general es porporcionar en un JSON el
-#   análisis de sentimientos de un conjunto de reviews. El resultado incluye 4 datos que corresponden
-#   a los reviews 'negativos', 'positivos', 'neutrales' y el 'total' de reviews analizados. El microservicio
-#   realiza el análisis de sentimientos consumiendo una API proporcionada por
-#   'http://text-processing.com/api/sentiment/' pasando cada uno de los reviews via 'POST' utilizando una
-#   'text' que representa el review a analizar.
+#   Este archivo define el rol de un micro servicio. Su función general es porporcionar en un objeto JSON el
+#   análisis de sentimientos dentro de un texto en particular. El resultado incluye 4 datos que corresponden
+#   a los sentimientos en el texto etiquetados como 'negativos', 'positivos', 'neutrales' y el 'total' de textos analizados.
+#   El micro servicio se conecta con el API de 'Text-processing' para realizar el análisis de sentimientos.
 #
 #
 #
@@ -22,28 +20,21 @@
 #           +-----------------------+-------------------------+-------------------------+
 #           |  Nombre del elemento  |     Responsabilidad     |      Propiedades        |
 #           +-----------------------+-------------------------+-------------------------+
-#           |                       |  - Ofrecer en un JSON   | - Se conecta con una    |
-#           |     Microservicio     |    que contenga el res- |   API que identifica el |
-#           |                       |    ultado de los reviews|   sentimiento expresado |
-#           |                       |    analizados.          |   en un review.         |
-#           |                       |                         | - El sentimiento puede  |
-#           |                       |                         |   ser 'positivo',       |
-#           |                       |                         |   'negativo' o 'neutral'|
-#           |                       |                         | - Utiliza la ruta:      |
-#           |                       |                         |   '/text/analysis' para |
-#           |                       |                         |   ofrecer el servicio.  |
+#           |                       |  - Ofrecer un JSON que  | - Se conecta con el API |
+#           |    Micro servicio     |    contenga el resultado|   de 'Text-processing'. |
+#           |                       |    del análisis de      | - Las etiquetas de los  |
+#           |                       |    sentimientos expresa-|   sentimientos son:     |
+#           |                       |    dos en un conjunto de|   'positive','negative' |
+#           |                       |    textos en particular.|    y 'neutral'.         |
+#           |                       |                         | - incluye una variable  |
+#           |                       |                         |   que indica el total de|
+#           |                       |                         |   textos analizados por |
+#           |                       |                         |   el API.               |
 #           |                       |                         | - Utiliza el método POST|
-#           |                       |                         |   para recibir los      |
-#           |                       |                         |   reviews a analizar.   |
-#           |                       |                         | - Los reviews a analizar|
-#           |                       |                         |   deben tener la forma: |
-#           |                       |                         |   {'review #': 'texto'} |
+#           |                       |                         |   para recibir el con-  |
+#           |                       |                         |   junto de textos a aná-|
+#           |                       |                         |   lizar.                |
 #           +-----------------------+-------------------------+-------------------------+
-#
-#	Instrucciones de ejecución:
-#		- Abrir la terminal
-#		- Ejecutar el comando 'python text_analysis_mc.py'
-#
 #
 import os
 from flask import Flask, request
