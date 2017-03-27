@@ -21,13 +21,17 @@ def sentiment_analysis():
 	#JSON de la respuesta
 	json_result = {}
 	#Conectar con el microservicio de Twitter
-	url_tweet = urllib.urlopen('http://localhost:8083/api/v1/tweets?u='+twitter_user)
+	# Conectar con el API Gateway
+	#url_tweet = urllib.urlopen('http://212.237.6.240:8083/api/v1/tweets?u='+twitter_user)
+	url_tweet = urllib.urlopen('https://uaz.cloud.tyk.io/reviews/api/v1/tweets?u='+twitter_user)
 	#Leer los tweets recibidos
 	json_tweets = url_tweet.read()
 	#Convertir en json los tweets obtenidos
 	tweets = json.loads(json_tweets)
 	#Enviar a analizar los tweets del json de twitter al servicio de analisis de sentimientos de twitter y recibimos el resultado
-	res_tweets = requests.post('http://localhost:8082/api/v1/text-analysis', json=tweets)
+	# Conectar con el API Gateway
+	#res_tweets = requests.post('http://212.237.6.240:8082/api/v1/text-analysis', json=tweets)
+	res_tweets = requests.post('https://uaz.cloud.tyk.io/sentiment/api/v1/text-analysis', json=tweets)
 	#Lo convertimos en un json
 	result_tweets = json.loads(res_tweets.text)
 	# Accedemos a los valores del json
@@ -36,7 +40,9 @@ def sentiment_analysis():
 	negative_reviews += int(result_tweets['negative'])
 	neutral_reviews += int(result_tweets['neutral'])
 	# Conectar con el microservicio de OMDB
-	url_omdb = urllib.urlopen("http://localhost:8084/api/v1/information?t=" + title)
+	# Conectar con el API Gateway
+	#url_omdb = urllib.urlopen("http://212.237.6.240:8084/api/v1/information?t=" + title)
+	url_omdb = urllib.urlopen("https://uaz.cloud.tyk.io/content/api/v1/information?t=" + title)
 	# Leer la respuesta de OMDB
 	json_omdb = url_omdb.read()
 	# Convertir en json la respuesta
