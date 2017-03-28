@@ -40,7 +40,10 @@ HOST: https://uaz.cloud.tyk.io/content
 
 # Information API
 
-## Information Microservice [/api/v1/information]
+## Information Microservice [/api/v1/information{?t}]
+
++ Parameters
+    + t - Corresponde al título de la película o serie de Netflix.
 
 ### Get Information [GET]
 
@@ -78,7 +81,10 @@ HOST: https://uaz.cloud.tyk.io/reviews
 
 # Reviews API
 
-## Reviews Microservice [/api/v1/tweets]
+## Reviews Microservice [/api/v1/tweets{?u}]
+
++ Parameters
+    + u - Corresponde al nombre de usuario en Twitter.
 
 ### Get Reviews [GET]
 
