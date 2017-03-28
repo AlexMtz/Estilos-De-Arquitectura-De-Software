@@ -3,7 +3,7 @@ En esta carpeta se definen los micro servicios utilizados en el capítulo 5. La 
 La especificación de cada micro servicio es la siguiente:
 ## Text Analysis Microservice
 +----------------------------------------------------------------------------------------+  
-FORMAT: 1A
+FORMAT: 1A  
 HOST: 212.237.6.240:8082
 
 # Analysis API
@@ -29,5 +29,43 @@ Api que permite evaluar el sentimiento en un texto específico.
             "negative": "10",
             "neutral": "5",
             "total reviews": "15"
+        }
++----------------------------------------------------------------------------------------+
+
+## Information Microservice
++----------------------------------------------------------------------------------------+  
+FORMAT: 1A  
+HOST: 212.237.6.240:8084
+
+# Information API
+
+## Information Microservice [/api/v1/information]
+
+### Get Information [GET]
+
++ Response 200 (application/json)
+
+        { 
+            "Title": "Some text",
+            "Year": "Some text", 
+            "Rated": "Some text",
+            "Released": "Some text",
+            "Runtime": "Some text",
+            "Genre": "Some text",
+            "Director": "Some text",
+            "Writer": "Some text",
+            "Actors": "Some text",
+            "Plot": "Some text",
+            "Language": "Some text",
+            "Country": "Some text",
+            "Awards": "Some text.",
+            "Poster": "Some text",
+            "Metascore": "Some text",
+            "imdbRating": "Some text",
+            "imdbVotes": "Some text",
+            "imdbID": "Some text",
+            "Type": "Some text",
+            "totalSeasons": "Some text",
+            "Response": "Some text"
         }
 +----------------------------------------------------------------------------------------+
