@@ -1,6 +1,7 @@
 # Micro servicios
 En esta carpeta se definen los micro servicios utilizados en el capítulo 5. La especificación de cada micro servicio se realizó utilizando blueprint de Apiary.
 La especificación de cada micro servicio es la siguiente:
+
 ## Text Analysis Microservice
 +----------------------------------------------------------------------------------------+  
 FORMAT: 1A  
@@ -68,4 +69,23 @@ HOST: 212.237.6.240:8084
             "totalSeasons": "Some text",
             "Response": "Some text"
         }
-+----------------------------------------------------------------------------------------+
++----------------------------------------------------------------------------------------+  
+
+## Reviews Microservice
++----------------------------------------------------------------------------------------+  
+FORMAT: 1A  
+HOST: 212.237.6.240:8083  
+
+# Reviews API
+
+## Reviews Microservice [/api/v1/tweets]
+
+### Get Reviews [GET]
+
++ Response 200 (application/json)
+
+        {
+            "review 0": "Some text",
+            "review 1": "Some text",
+            "review n": "Some text"
+        }
