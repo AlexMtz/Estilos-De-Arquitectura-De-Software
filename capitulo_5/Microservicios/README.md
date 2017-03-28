@@ -5,7 +5,7 @@ La especificación de cada micro servicio es la siguiente:
 ## Text Analysis Microservice
 +----------------------------------------------------------------------------------------+  
 FORMAT: 1A  
-HOST: https://uaz.cloud.tyk.io/sentiment/
+HOST: https://uaz.cloud.tyk.io/sentiment
 
 # Analysis API
 
@@ -36,7 +36,7 @@ Api que permite evaluar el sentimiento en un texto específico.
 ## Information Microservice
 +----------------------------------------------------------------------------------------+  
 FORMAT: 1A  
-HOST: https://uaz.cloud.tyk.io/content/
+HOST: https://uaz.cloud.tyk.io/content
 
 # Information API
 
@@ -74,7 +74,7 @@ HOST: https://uaz.cloud.tyk.io/content/
 ## Reviews Microservice
 +----------------------------------------------------------------------------------------+  
 FORMAT: 1A  
-HOST: https://uaz.cloud.tyk.io/reviews/
+HOST: https://uaz.cloud.tyk.io/reviews
 
 # Reviews API
 
