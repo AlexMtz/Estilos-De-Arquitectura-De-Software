@@ -23,7 +23,7 @@
 #           |                       |    culas o series en    |   datos de la serie o  |
 #           |                       |    particular.          |   pelicula en cuestión.|
 #           +-----------------------+-------------------------+------------------------+
-#
+#	Ejemplo de uso: Abrir navegador e ingresar a http://localhost:8084/api/v1/information?t=matrix
 import os
 from flask import Flask
 from flask import render_template
@@ -36,7 +36,7 @@ def get_information():
 	# Método que obtiene la información de OMDB acerca de un título en particular
 	# Se obtiene el parámetro 't' que contiene el título de la película o serie que se va a consultar
 	title = request.args.get("t")
-	# Se ocnecta con el micro servicio de OMDB a través del API que OMDB ofrece
+	# Se conecta con el servicio de OMDB a través de su API que OMDB ofrece
 	url_omdb = urllib.urlopen("http://www.omdbapi.com/?t="+title+"&plot=full&r=json")
 	# Se lee la respuesta de OMDB
 	json_omdb = url_omdb.read()
