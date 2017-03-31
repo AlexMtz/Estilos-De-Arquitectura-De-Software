@@ -1,11 +1,11 @@
 # Capitulo 3
 
-## "Health Monitoring Simulator"
+## "Sistema de Monitoreo de Adultos Mayores"
 
 ### Prerequisitos
 
-Antes de ejecutar el código aseguradte de haber realizado las acciones indicadas en la Wiki -> HealthMonitoringSimulator  
-[Prerequisitos](https://github.com/AlexMtz/Estilos-De-Arquitectura-De-Software/wiki/HealthMonitoringSimulator)
+Antes de ejecutar el código aseguradte de haber realizado las acciones indicadas en la Wiki -> SistemaDeMonitoreoDeAdultosMayores  
+[Prerequisitos](https://github.com/AlexMtz/Patrones-De-Arquitectura-De-Software/wiki/SistemaDeMonitoreoDeAdultosMayores)
 
 ### Ejecutar Simulador
 
