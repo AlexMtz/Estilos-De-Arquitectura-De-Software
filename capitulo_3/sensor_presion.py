@@ -2,24 +2,23 @@
 # -*- coding: utf-8 -*-
 
 #--------------------------------------------------------------------------------------------------
-# Archivo: SensorRitmoCardiaco.py
-# Capitulo: 3 Estilo Publica-Subscribe
+# Archivo: sensor_presion.py
+# Capitulo: 3 Patrón Publica-Suscribe
 # Autor(es): Perla Velasco & Yonathan Mtz.
-# Version: 1.5.1 Agosto 2016
+# Version: 1.5.2 Marzo 2017
 # Descripción:
 #
-#   Ésta clase define el rol de un publicador que envia mensajes a una cola
-#   específica.
+#   Ésta clase define el rol de un publicador, componente que envía mensajes.
 #   Las características de ésta clase son las siguientes:
 #
-#                                      SensorRitmoCardiaco.py 
+#                                        sensor_presion.py
 #           +-----------------------+-------------------------+------------------------+
 #           |  Nombre del elemento  |     Responsabilidad     |      Propiedades       |
 #           +-----------------------+-------------------------+------------------------+
 #           |                       |  - Enviar mensajes      |  - Se conecta a la cola|
-#           |      Publicador       |                         |    'direct rhythm'.    |
-#           |                       |                         |  - Envia datos de los  |
-#           |                       |                         |    latidos del corazón.|
+#           |      Publicador       |                         |    'direct preasure'.  |
+#           |                       |                         |  - Envía datos de      |
+#           |                       |                         |    presión a la cola.  |
 #           +-----------------------+-------------------------+------------------------+
 #
 #   A continuación se describen los métodos que se implementaron en ésta clase:
@@ -52,15 +51,15 @@
 #           |                        |                          |    lizará.            |
 #           +------------------------+--------------------------+-----------------------+
 #           |                        |                          |  - Genera un número   |
-#           |     simulate_data()    |           None           |    aleatorio entre 60 |
-#           |                        |                          |    y 150.             |
+#           |     simulate_data()    |           None           |    aleatorio entre 100|
+#           |                        |                          |    y 200.             |
 #           +------------------------+--------------------------+-----------------------+
 #
 #           Nota: "propio de Rabbit" implica que se utilizan de manera interna para realizar
-#            de manera correcta la recepcion de datos, para éste ejemplo no shubo necesidad
-#            de utilizarlos y para evitar la sobrecarga de información se han omitido sus
-#            detalles. Para más información acerca del funcionamiento interno de RabbitMQ
-#            puedes visitar: https://www.rabbitmq.com/
+#            la recepcion de datos, para éste ejemplo no hubo necesidad de utilizarlos
+#            y para evitar la sobrecarga de información se han omitido sus detalles.
+#            Para más información acerca del funcionamiento interno de RabbitMQ puedes
+#            visitar: https://www.rabbitmq.com/
 #            
 #
 #--------------------------------------------------------------------------------------------------
@@ -69,7 +68,7 @@ import pika
 import random
 
 
-class SensorRitmoCardiaco:
+class SensorPresion:
     nombre = None
     id = 0
 
@@ -93,21 +92,21 @@ class SensorRitmoCardiaco:
         #   +----------------------------------------------------------------------------------------+
         #   | La siguiente linea permite definir el tipo de intercambio y de que cola recibirá datos |
         #   +----------------------------------------------------------------------------------------+
-        channel.exchange_declare(exchange='direct_rhythm', type='direct')
-        severity = 'ritmo_cardiaco'
-        ritmo_cardiaco_generado = self.simulate_data()
-        mensaje = 'RC:' + str(self.id) + ':' + self.nombre + \
-            ':' + str(ritmo_cardiaco_generado)
+        channel.exchange_declare(exchange='direct_preasure', type='direct')
+        severity = 'presion_arterial'
+        presion_arterial_generada = self.simulate_data()
+        mensaje = 'PA:' + str(self.id) + ':' + self.nombre + \
+            ':' + str(presion_arterial_generada)
         #   +----------------------------------------------------------------------------+
         #   | La siguiente linea permite enviar datos a la cola seleccionada.            |
         #   +----------------------------------------------------------------------------+
-        channel.basic_publish(exchange='direct_rhythm',
+        channel.basic_publish(exchange='direct_preasure',
                               routing_key=severity, body=mensaje)
         print('+---------------+--------------------+-------------------------------+-------+')
-        print('|      ' + str(self.id) +'     |     ' + self.nombre +'     |    RITMO CARDIACO ENVIADO     |  ' + str(ritmo_cardiaco_generado) + '  |')
+        print('|      ' + str(self.id) +'     |     ' + self.nombre +'     |   PRESIÓN ARTERIAL ENVIADA    |  ' + str(presion_arterial_generada) + '  |')
         print('+---------------+--------------------+-------------------------------+-------+')
         print('')
         connection.close()
 
     def simulate_data(self):
-        return random.randint(int(60), int(150))
+        return random.randint(int(100), int(200))

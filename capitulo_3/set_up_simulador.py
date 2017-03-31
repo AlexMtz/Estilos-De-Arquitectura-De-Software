@@ -1,24 +1,24 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #--------------------------------------------------------------------------------------------------
-# Archivo: Simulador.py
-# Capitulo: 3 Estilo Publica-Subscribe
+# Archivo: set_up_simulador.py
+# Capitulo: 3 Patrón Publica-Suscribe
 # Autor(es): Perla Velasco & Yonathan Mtz.
-# Version: 1.2 Agosto 2016
+# Version: 1.3 Marzo 2017
 # Descripción:
 #
-#   Ésta clase define el rol de set-up del proyecto y permite instanciar las clases para
-#   construir un entorno simulado del caso de estudio.
+#   Ésta clase define el rol de set-up del capítulo y permite instanciar las clases para
+#   construir un entorno simulado del ejemplo del capítulo.
 #
 #   Las características de ésta clase son las siguientes:
 #
-#                                        Simulador.py
+#                                        set_up_simulador.py
 #           +-----------------------+-------------------------+------------------------+
 #           |  Nombre del elemento  |     Responsabilidad     |      Propiedades       |
 #           +-----------------------+-------------------------+------------------------+
 #           |                       |                         |  - Inicializa los pu-  |
 #           |                       |                         |    blicadores y los    |
-#           |                       |                         |    subscriptores.      |
+#           |                       |                         |    suscriptores.       |
 #           |        Set-Up         |  - Levantar entorno de  |  - Solicita al usuario |
 #           |                       |    simulación.          |    las características |
 #           |                       |                         |    con las que contará |
@@ -40,7 +40,7 @@
 #           |         main()          |           None           |  - Manda crear los    |
 #           |                         |                          |    publicadores.      |
 #           |                         |                          |  - Manda crear los    |
-#           |                         |                          |    subscriptores.     |
+#           |                         |                          |    suscriptores.      |
 #           |                         |                          |  - Solicita los valo- |
 #           |                         |                          |    res máximos que    |
 #           |                         |                          |    generarán los      |
@@ -57,13 +57,13 @@
 #           +-------------------------+--------------------------+-----------------------+
 #           |                         |                          |  - Ejecuta los metodos|
 #           |    run_simulator()      |           None           |    que inician a los  |
-#           |                         |                          |    subscriptores y a  |
+#           |                         |                          |    suscriptores y a   |
 #           |                         |                          |    los publicadores.  |
 #           +-------------------------+--------------------------+-----------------------+
 #           |                         |                          |  - Abre tres termina- |
 #           |    start_consumers()    |           None           |    les y en cada una  |
 #           |                         |                          |    de ellas ejecuta un|
-#           |                         |                          |    subscriptor.       |
+#           |                         |                          |    suscriptor.        |
 #           +-------------------------+--------------------------+-----------------------+
 #           |                         |                          |  - Simula 1000 eventos|
 #           |    start_publishers()   |           None           |    generados por los  |
@@ -75,9 +75,9 @@
 import os
 import time
 import pika
-from SensorTemperatura import SensorTemperatura
-from SensorRitmoCardiaco import SensorRitmoCardiaco
-from SensorPresion import SensorPresion
+from sensor_temperatura import SensorTemperatura
+from sensor_ritmo_cardiaco import SensorRitmoCardiaco
+from sensor_presion import SensorPresion
 
 
 class SetUpSimulador:
@@ -88,7 +88,7 @@ class SetUpSimulador:
 
     def main(self):
         print('+---------------------------------------------+')
-        print('|  Bienvenido al Simulador Publica-Subscribe  |')
+        print('|  Bienvenido al Simulador Publica-Suscribe   |')
         print('+---------------------------------------------+')
         print('')
         raw_input('presiona enter para continuar: ')
@@ -194,16 +194,16 @@ class SetUpSimulador:
         self.sensores.append(s)
 
     def run_simulator(self):
-        #self.start_consumers()
+        self.start_subscribers()
         self.start_publishers()
 
-    def start_consumers(self):
+    def start_subscribers(self):
         os.system(
-            "gnome-terminal -e 'bash -c \"python TemperaturaManager.py " + str(self.temperatura) + "; sleep 5 \"'")
+            "gnome-terminal -e 'bash -c \"python fl_temperatura.py " + str(self.temperatura) + "; sleep 5 \"'")
         os.system(
-            "gnome-terminal -e 'bash -c \"python RitmoCardiacoManager.py " + str(self.ritmo_cardiaco) + "; sleep 5 \"'")
+            "gnome-terminal -e 'bash -c \"python fl_ritmo_cardiaco.py " + str(self.ritmo_cardiaco) + "; sleep 5 \"'")
         os.system(
-            "gnome-terminal -e 'bash -c \"python PresionManager.py " + str(self.presion) + "; sleep 5 \"'")
+            "gnome-terminal -e 'bash -c \"python fl_presion.py " + str(self.presion) + "; sleep 5 \"'")
 
     def start_publishers(self):
         for x in xrange(0, 1000):

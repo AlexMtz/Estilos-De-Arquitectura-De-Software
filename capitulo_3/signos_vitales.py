@@ -1,18 +1,18 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #--------------------------------------------------------------------------------------------------
-# Archivo: SignosVitales.py
-# Capitulo: 3 Estilo Publica-Subscribe
+# Archivo: signos_vitales.py
+# Capitulo: 3 Patrón Publica-Subscribe
 # Autor(es): Perla Velasco & Yonathan Mtz.
-# Version: 1.1 Agosto 2016
+# Version: 1.2 Marzo 2017
 # Descripción:
 #
 #   Ésta clase define el rol de un monitor que muestra y notifica el resultado de los eventos
-#   a los usuarios finales.
+#   a los operadores.
 #
 #   Las características de ésta clase son las siguientes:
 #
-#                                        SignosVitales.py
+#                                        signos_vitales.py
 #           +-----------------------+-------------------------+------------------------+
 #           |  Nombre del elemento  |     Responsabilidad     |      Propiedades       |
 #           +-----------------------+-------------------------+------------------------+
@@ -34,7 +34,7 @@
 #           +------------------------+--------------------------+-----------------------+
 #           |                        |                          |  - Imprime el mensa-  |
 #           |   print_notification() |      String: message     |    je recibido desde  |
-#           |                        |                          |    los subscriptores. |
+#           |                        |                          |    los suscriptores.  |
 #           +------------------------+--------------------------+-----------------------+
 #
 #--------------------------------------------------------------------------------------------------

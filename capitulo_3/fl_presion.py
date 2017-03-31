@@ -1,31 +1,29 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #--------------------------------------------------------------------------------------------------
-# Archivo: PresionManager.py
-# Capitulo: 3 Estilo Publica-Subscribe
+# Archivo: fl_presion.py
+# Capitulo: 3 Patrón Publica-Suscribe
 # Autor(es): Perla Velasco & Yonathan Mtz.
-# Version: 1.5.1 Agosto 2016
+# Version: 1.5.2 Marzo 2017
 # Descripción:
 #
-#   Ésta clase define el rol de un subscriptor que consume los mensajes de una cola
-#   específica.
+#   Ésta clase define el rol de un suscriptor, componente interesado en recibir los mensajes.
 #   Las características de ésta clase son las siguientes:
 #
-#                                        PresionManager.py
+#                                        fl_presion.py
 #           +-----------------------+-------------------------+------------------------+
 #           |  Nombre del elemento  |     Responsabilidad     |      Propiedades       |
 #           +-----------------------+-------------------------+------------------------+
-#           |                       |  - Recibir mensajes     |  - Se subscribe a la   |
-#           |      Subscriptor      |  - Notificar al         |    cola de 'direct     |
+#           |                       |  - Recibir mensajes     |  - Se suscribe a la    |
+#           |      Suscriptor       |  - Notificar al         |    cola de 'direct     |
 #           |                       |    monitor.             |    preasure'.          |
 #           |                       |  - Filtrar valores      |  - Define un rango en  |
-#           |                       |    extremos de presion  |    el que la presión   |
-#           |                       |    arterial.            |    tiene valores vá-   |
+#           |                       |    de presion arterial. |    el que la presión   |
+#           |                       |                         |    tiene valores vá-   |
 #           |                       |                         |    lidos.              |
 #           |                       |                         |  - Notifica al monitor |
-#           |                       |                         |    un segundo después  |
-#           |                       |                         |    de recibir el       |
-#           |                       |                         |    mensaje.            |
+#           |                       |                         |    después después de  |
+#           |                       |                         |    recibir el mensaje. |
 #           +-----------------------+-------------------------+------------------------+
 #
 #   A continuación se describen los métodos que se implementaron en ésta clase:
@@ -35,7 +33,7 @@
 #           |         Nombre         |        Parámetros        |        Función        |
 #           +------------------------+--------------------------+-----------------------+
 #           |                        |                          |  - Establece el valor |
-#           |     setUpManager()     |      int: sistolica      |    máximo permitido   |
+#           |    set_up_manager()    |      int: sistolica      |    máximo permitido   |
 #           |                        |                          |    de la presión      |
 #           |                        |                          |    arterial sistólica.|
 #           +------------------------+--------------------------+-----------------------+
@@ -50,9 +48,9 @@
 #           |                        |                          |    ón con el servidor |
 #           |                        |                          |    de RabbitMQ local. |
 #           |                        |                          |  - Declara el tipo de |
-#           |                        |                          |    tipo de intercam-  |
-#           |                        |                          |    bio y a que cola   |
-#           |                        |                          |    se va a subscribir.|
+#           |                        |                          |    intercambio y a    |
+#           |                        |                          |    que cola se va a   |
+#           |                        |                          |    subscribir.        |
 #           |                        |                          |  - Comienza a esperar |
 #           |                        |                          |    los eventos.       |
 #           +------------------------+--------------------------+-----------------------+
@@ -64,10 +62,10 @@
 #           +------------------------+--------------------------+-----------------------+
 #
 #           Nota: "propio de Rabbit" implica que se utilizan de manera interna para realizar
-#            de manera correcta la recepcion de datos, para éste ejemplo no shubo necesidad
-#            de utilizarlos y para evitar la sobrecarga de información se han omitido sus
-#            detalles. Para más información acerca del funcionamiento interno de RabbitMQ
-#            puedes visitar: https://www.rabbitmq.com/
+#            la recepcion de datos, para éste ejemplo no hubo necesidad de utilizarlos
+#            y para evitar la sobrecarga de información se han omitido sus detalles.
+#            Para más información acerca del funcionamiento interno de RabbitMQ puedes
+#            visitar: https://www.rabbitmq.com/
 #            
 #
 #--------------------------------------------------------------------------------------------------
@@ -75,18 +73,18 @@
 
 import pika
 import sys
-from SignosVitales import SignosVitales
+from signos_vitales import SignosVitales
 
-class PresionManager:
+class FlPresion:
     presion_sistolica = 0
     values_parameters = []
 
-    def setUpManager(self, sistolica):
+    def set_up_manager(self, sistolica):
         self.presion_sistolica = sistolica
 
     def start_consuming(self):
         self.values_parameters = sys.argv[1]
-        self.setUpManager(self.values_parameters)
+        self.set_up_manager(self.values_parameters)
         #   +--------------------------------------------------------------------------------------+
         #   | La siguiente linea permite realizar la conexión con el servidor que aloja a RabbitMQ |
         #   +--------------------------------------------------------------------------------------+
@@ -126,5 +124,5 @@ class PresionManager:
             monitor.print_notification('')
             monitor.print_notification('')
 
-test = PresionManager()
+test = FlPresion()
 test.start_consuming()

@@ -2,31 +2,29 @@
 # -*- coding: utf-8 -*-
 
 #--------------------------------------------------------------------------------------------------
-# Archivo: RitmoCardiacoManager.py
-# Capitulo: 3 Estilo Publica-Subscribe
+# Archivo: fl_ritmo_cardiaco.py
+# Capitulo: 3 Patrón Publica-Suscribe
 # Autor(es): Perla Velasco & Yonathan Mtz.
-# Version: 1.5.1 Agosto 2016
+# Version: 1.5.2 Marzo 2017
 # Descripción:
 #
-#   Ésta clase define el rol de un subscriptor que consume los mensajes de una cola
-#   específica.
+#   Ésta clase define el rol de un suscriptor, componente interesado en recibir los mensajes.
 #   Las características de ésta clase son las siguientes:
 #
-#                                      RitmoCardiacoManager.py
+#                                      fl_ritmo_cardiaco.py
 #           +-----------------------+-------------------------+------------------------+
 #           |  Nombre del elemento  |     Responsabilidad     |      Propiedades       |
 #           +-----------------------+-------------------------+------------------------+
-#           |                       |  - Recibir mensajes     |  - Se subscribe a la   |
-#           |      Subscriptor      |  - Notificar al         |    cola de 'direct     |
+#           |                       |  - Recibir mensajes     |  - Se suscribe a la    |
+#           |      Suscriptor       |  - Notificar al         |    cola de 'direct     |
 #           |                       |    monitor.             |    rhythm'.            |
 #           |                       |  - Filtrar valores      |  - Define un rango en  |
 #           |                       |    extremos del ritmo   |    el que el ritmo car-|
 #           |                       |    cardiaco.            |    diaco tiene valores |
 #           |                       |                         |    válidos.            |
 #           |                       |                         |  - Notifica al monitor |
-#           |                       |                         |    un segundo después  |
-#           |                       |                         |    de recibir el       |
-#           |                       |                         |    mensaje.            |
+#           |                       |                         |    después de recibir  |
+#           |                       |                         |    el mensaje.         |
 #           +-----------------------+-------------------------+------------------------+
 #
 #   A continuación se describen los métodos que se implementaron en ésta clase:
@@ -36,9 +34,9 @@
 #           |         Nombre         |        Parámetros        |        Función        |
 #           +------------------------+--------------------------+-----------------------+
 #           |                        |                          |  - Establece el valor |
-#           |     setUpManager()     |         int: max         |    máximo permitido   |
-#           |                        |                          |    de los latidos ma- |
-#           |                        |                          |    ximos del corazón. |
+#           |    set_up_manager()    |         int: max         |    máximo permitido   |
+#           |                        |                          |    de los latidos del |
+#           |                        |                          |    corazón.           |
 #           +------------------------+--------------------------+-----------------------+
 #           |                        |                          |  - Lee los argumentos |
 #           |                        |                          |    con los que se e-  |
@@ -51,9 +49,9 @@
 #           |                        |                          |    ón con el servidor |
 #           |                        |                          |    de RabbitMQ local. |
 #           |                        |                          |  - Declara el tipo de |
-#           |                        |                          |    tipo de intercam-  |
-#           |                        |                          |    bio y a que cola   |
-#           |                        |                          |    se va a subscribir.|
+#           |                        |                          |    intercambio y a    |
+#           |                        |                          |    que cola se va a   |
+#           |                        |                          |    suscribir.         |
 #           |                        |                          |  - Comienza a esperar |
 #           |                        |                          |    los eventos.       |
 #           +------------------------+--------------------------+-----------------------+
@@ -65,29 +63,29 @@
 #           +------------------------+--------------------------+-----------------------+
 #
 #           Nota: "propio de Rabbit" implica que se utilizan de manera interna para realizar
-#            de manera correcta la recepcion de datos, para éste ejemplo no shubo necesidad
-#            de utilizarlos y para evitar la sobrecarga de información se han omitido sus
-#            detalles. Para más información acerca del funcionamiento interno de RabbitMQ
-#            puedes visitar: https://www.rabbitmq.com/
+#            la recepcion de datos, para éste ejemplo no hubo necesidad de utilizarlos
+#            y para evitar la sobrecarga de información se han omitido sus detalles.
+#            Para más información acerca del funcionamiento interno de RabbitMQ puedes
+#            visitar: https://www.rabbitmq.com/
 #            
 #
 #--------------------------------------------------------------------------------------------------
 
 import pika
 import sys
-from SignosVitales import SignosVitales
+from signos_vitales import SignosVitales
 
 
-class RitmoCardiacoManager:
+class FlRitmoCardiaco:
     pulso_maximo = 0
     values_parameters = []
 
-    def setUpManager(self, max):
+    def set_up_manager(self, max):
         self.pulso_maximo = max
 
     def start_consuming(self):
         self.values_parameters = sys.argv[1]
-        self.setUpManager(self.values_parameters)
+        self.set_up_manager(self.values_parameters)
         #   +--------------------------------------------------------------------------------------+
         #   | La siguiente linea permite realizar la conexión con el servidor que aloja a RabbitMQ |
         #   +--------------------------------------------------------------------------------------+
@@ -127,5 +125,5 @@ class RitmoCardiacoManager:
             monitor.print_notification('')
             monitor.print_notification('')
 
-test = RitmoCardiacoManager()
+test = FlRitmoCardiaco()
 test.start_consuming()

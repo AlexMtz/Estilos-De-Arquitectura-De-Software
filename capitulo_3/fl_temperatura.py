@@ -2,31 +2,29 @@
 # -*- coding: utf-8 -*-
 
 #--------------------------------------------------------------------------------------------------
-# Archivo: TemperaturaManager.py
-# Capitulo: 3 Estilo Publica-Subscribe
+# Archivo: fl_temperatura.py
+# Capitulo: 3 Patrón Publica-Suscribe
 # Autor(es): Perla Velasco & Yonathan Mtz.
-# Version: 1.5.1 Agosto 2016
+# Version: 1.5.2 Marzo 2017
 # Descripción:
 #
-#   Ésta clase define el rol de un subscriptor que consume los mensajes de una cola
-#   específica.
+#   Ésta clase define el rol de un suscriptor, componente interesado en recibir los mensajes.
 #   Las características de ésta clase son las siguientes:
 #
-#                                        TemperaturaManager.py
+#                                        fl_temperatura.py
 #           +-----------------------+-------------------------+------------------------+
 #           |  Nombre del elemento  |     Responsabilidad     |      Propiedades       |
 #           +-----------------------+-------------------------+------------------------+
-#           |                       |  - Recibir mensajes     |  - Se subscribe a la   |
-#           |      Subscriptor      |  - Notificar al         |    cola de 'direct     |
+#           |                       |  - Recibir mensajes     |  - Se suscribe a la    |
+#           |      Suscriptor       |  - Notificar al         |    cola de 'direct     |
 #           |                       |    monitor.             |    temperature'.       |
 #           |                       |  - Filtrar valores      |  - Define un rango en  |
 #           |                       |    extremos de tempera- |    el que la tempera-  |
 #           |                       |    tura.                |    tura tiene valores  |
 #           |                       |                         |    válidos.            |
 #           |                       |                         |  - Notifica al monitor |
-#           |                       |                         |    un segundo después  |
-#           |                       |                         |    de recibir el       |
-#           |                       |                         |    mensaje.            |
+#           |                       |                         |    después de recibir  |
+#           |                       |                         |    el mensaje.         |
 #           +-----------------------+-------------------------+------------------------+
 #
 #   A continuación se describen los métodos que se implementaron en ésta clase:
@@ -36,7 +34,7 @@
 #           |         Nombre         |        Parámetros        |        Función        |
 #           +------------------------+--------------------------+-----------------------+
 #           |                        |                          |  - Establece el valor |
-#           |     setUpManager()     |      int: max            |    máximo permitido   |
+#           |    set_up_manager()    |      int: max            |    máximo permitido   |
 #           |                        |                          |    de la temperatura. |
 #           +------------------------+--------------------------+-----------------------+
 #           |                        |                          |  - Lee los argumentos |
@@ -52,7 +50,7 @@
 #           |                        |                          |  - Declara el tipo de |
 #           |                        |                          |    tipo de intercam-  |
 #           |                        |                          |    bio y a que cola   |
-#           |                        |                          |    se va a subscribir.|
+#           |                        |                          |    se va a suscribir. |
 #           |                        |                          |  - Comienza a esperar |
 #           |                        |                          |    los eventos.       |
 #           +------------------------+--------------------------+-----------------------+
@@ -74,20 +72,20 @@
 
 import pika
 import sys
-from SignosVitales import SignosVitales
+from signos_vitales import SignosVitales
 
 
-class TemperaturaManager:
+class FlTemperatura:
     temperatura_maxima = 0
     status = ""
     values_parameters = 0
 
-    def setUpManager(self, max):
+    def set_up_manager(self, max):
         self.temperatura_maxima = max
 
     def start_consuming(self):
         self.values_parameters = sys.argv[1]
-        self.setUpManager(self.values_parameters)
+        self.set_up_manager(self.values_parameters)
         #   +--------------------------------------------------------------------------------------+
         #   | La siguiente linea permite realizar la conexión con el servidor que aloja a RabbitMQ |
         #   +--------------------------------------------------------------------------------------+
@@ -127,5 +125,5 @@ class TemperaturaManager:
             monitor.print_notification('')
             monitor.print_notification('')
 
-test = TemperaturaManager()
+test = FlTemperatura()
 test.start_consuming()
