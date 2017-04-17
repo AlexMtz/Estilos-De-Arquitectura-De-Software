@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #!/usr/bin/env python
 #----------------------------------------------------------------------------------------------------------------
-# Archivo: sentiment_app.py
+# Archivo: gui.py
 # Capitulo: 5 Estilo Microservicios.
 # Autor(es): Perla Velasco & Yonathan Mtz.
 # Version: 1.0 Marzo 2017
@@ -12,7 +12,7 @@
 #   
 #   
 #
-#                                        sentiment_app.py
+#                                              gui.py
 #           +-----------------------+-------------------------+------------------------+
 #           |  Nombre del elemento  |     Responsabilidad     |      Propiedades       |
 #           +-----------------------+-------------------------+------------------------+
