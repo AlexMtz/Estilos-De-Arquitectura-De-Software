@@ -1,6 +1,6 @@
 # Sistema de Monitoreo de Adultos Mayores (SMAM)
 
-## Repositorio del capítulo 3
+Repositorio del capítulo 3
 
 Antes de ejecutar el código aseguradte de instalar los prerrequisitos del sistema ejecutando:
 > sudo pip install -r requirements.txt
@@ -44,4 +44,4 @@ Para ejecutar el simulador es necesario seguir los sigiuentes pasos:
 5. Instalar los prerrequisitos: `sudo pip install -r requirements.py`
 6. Ejecutar el simulador: `python Simulador.py`  
 
-*__Nota__: EL simulador unicamente inicializa a los publicaodres por lo que si se requiere o desea inicalizar un suscriptor deberá hacer de forma manual e independiente.*
+*__Nota__: El simulador unicamente inicializa a los publicaodres por lo que si se requiere o desea inicalizar un suscriptor deberá hacer de forma manual e independiente.*
