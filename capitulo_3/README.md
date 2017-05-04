@@ -2,7 +2,7 @@
 
 Repositorio del capítulo 3
 
-Antes de ejecutar el código aseguradte de instalar los prerrequisitos del sistema ejecutando:
+Antes de ejecutar el código asegurate de instalar los prerrequisitos del sistema ejecutando:
 > sudo pip install -r requirements.txt
 
 El paquete que se instalará es el siguiente:
